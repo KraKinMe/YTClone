@@ -1,33 +1,20 @@
-var express = require("express");
-var app = express();
-var port = 4000
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-// cors to send data from backend to frontend or vice versa
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    
+  </React.StrictMode>
+);
 
-const mongoose = require('mongoose');
-const path = require('path');
-
-app.use(cors({
-    origin: 'http://localhost:3000', // React App URL mai jo use kar raha hoon
-    credentials: true
-  }))
-
-app.use(express.json());
-app.use(cookieParser());
-require('./Connection/conn');
-
-// to connect to the database(MongoDB) and create a database called youtubeBackend
-
-//Routes to handle the requests
-
-const AuthRoutes = require('./Routes/user');
-const VideoRoutes = require('./Routes/video');
-const CommentRoutes = require('./Routes/comment');
-
-app.use('/auth',AuthRoutes);
-app.use('/api',VideoRoutes);
-app.use('/commentApi',CommentRoutes);
-
-
-app.listen(port,()=>{console.log("Our backend project is running on Port 4000")}); // Backend server
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
